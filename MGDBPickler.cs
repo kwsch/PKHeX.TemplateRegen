@@ -4,7 +4,7 @@ public class MGDBPickler(string PKHeXLegality, string EventGalleryRepoPath)
 {
     private const string LegalityOverrideCards = "PKHeX Legality";
 
-    private static Dictionary<string, string> BadCardSwap = new()
+    private static readonly Dictionary<string, string> BadCardSwap = new()
     {
         {"1053 XYORAS - 데세르시티 Arceus (KOR).wc6",
          "1053 XYORAS - 데세르시티 Arceus (KOR) - Form Fix.wc6"},
@@ -40,7 +40,7 @@ public class MGDBPickler(string PKHeXLegality, string EventGalleryRepoPath)
         Bin(_9, "wc9");
     }
 
-    private void Bin(string path, params string[] type)
+    private void Bin(string path, params ReadOnlySpan<string> type)
     {
         var dest = Path.Combine(PKHeXLegality, "mgdb");
         foreach (var z in type)

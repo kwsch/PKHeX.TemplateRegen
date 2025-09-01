@@ -28,6 +28,12 @@ public class PGETPickler(string PathPKHeXLegality, string PathRepoPGET)
             return;
         }
 
+        if (!GetIsModified(exe, out var date))
+        {
+            LogUtil.Log("PGET executable is not recently built. Build failure?");
+            return;
+        }
+
         // start the executable with --update passed as arg
         var startInfo = new ProcessStartInfo
         {
@@ -60,6 +66,12 @@ public class PGETPickler(string PathPKHeXLegality, string PathRepoPGET)
             ctr++;
         }
         LogUtil.Log($"Copied {ctr} files to {dest}");
+    }
+
+    private static bool GetIsModified(string exe, out DateTime date)
+    {
+        date = File.GetLastWriteTime(exe);
+        return date.AddMinutes(1) >= DateTime.Now;
     }
 
     private static bool BuildRepo(string repoPath)
