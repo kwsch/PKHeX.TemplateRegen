@@ -19,6 +19,7 @@ public class MGDBPickler(string PKHeXLegality, string EventGalleryRepoPath)
             return;
 
         var released = Path.Combine(repoPath, "Released");
+        string _9a = Path.Combine(released, "Gen 9");
         string _9 = Path.Combine(released, "Gen 9");
         string _8a = Path.Combine(released, "Gen 8");
         string _8b = Path.Combine(released, "Gen 8");
@@ -38,6 +39,7 @@ public class MGDBPickler(string PKHeXLegality, string EventGalleryRepoPath)
         Bin(_8b, "wb8");
         Bin(_8a, "wa8");
         Bin(_9, "wc9");
+        Bin(_9a, "wa9");
     }
 
     private void Bin(string path, params ReadOnlySpan<string> type)
